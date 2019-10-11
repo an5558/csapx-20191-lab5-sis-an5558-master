@@ -243,6 +243,11 @@ public class Course implements Comparable<Course> {
 
         // loop over the map and print out the matching ones here
         // TODO
+        for(Map.Entry<Course, String> course : courseMap.entrySet()) {
+            if(course.getValue().equals("A")){
+                System.out.println(course.getKey().getName());
+            }
+        }
     }
 }
 
