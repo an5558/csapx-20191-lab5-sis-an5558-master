@@ -7,6 +7,10 @@ import java.util.Comparator;
  * @author YOUR NAME HERE
  */
 public class CourseComparator implements Comparator<Course> {
+    public CourseComparator() {
+
+    }
+
     @Override
     public int compare(Course o1, Course o2) {
         return o1.getName().compareTo(o2.getName());

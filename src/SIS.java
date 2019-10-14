@@ -52,6 +52,7 @@ public class SIS {
     public final static String QUIT = "quit";
 
     // TODO add the backend data member here
+    private Backend backend;
 
     /**
      * Create the backend.
@@ -63,6 +64,7 @@ public class SIS {
      */
     public SIS(String courseFile, String professorFile, String studentFile) throws FileNotFoundException {
         // TODO create the backend here
+        backend = new Backend(courseFile, professorFile, studentFile);
     }
 
     /**
