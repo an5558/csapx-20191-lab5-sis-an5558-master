@@ -1,11 +1,20 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Collection;
+import java.util.Scanner;
 
 public class Backend {
     private CourseDB courseDB;
     private UserDB userDB;
 
-    public Backend(String courseFile, String professorFile, String studentFile) {
-
+    public Backend(String courseFile, String professorFile, String studentFile) throws FileNotFoundException {
+        try(Scanner in = new Scanner(new File(courseFile))) {
+            while(in.hasNext()){
+                String[] fields = in.nextLine().split(",");
+                Course course = new Course(Integer.parseInt(fields[0]), fields[1], Integer.parseInt(fields[2]));
+                courseDB.addValue(course);
+            }
+        }
     }
 
     private void addCourses(User user, String[] courseIds) { }
