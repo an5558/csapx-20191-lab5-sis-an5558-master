@@ -116,11 +116,37 @@ public class SIS {
             } else if (fields[0].equals(QUIT)) {
                 break;
             } else if(fields[0].equals(COURSE)){
-                System.out.println(backend.getCourse(Integer.parseInt(fields[1])));
+                if(backend.courseExists(Integer.parseInt(fields[1]))) {
+                    System.out.println(backend.getCourse(Integer.parseInt(fields[1])));
+                } else{
+                    System.out.println("Error: The course entered does not exist in the database.");
+                }
             } else if(fields[0].equals(COURSES)){
                 System.out.println(backend.getAllCourses());
-            }
-            else {
+            } else if(fields[0].equals(ENROLL)){
+                System.out.println(backend.enrollStudent(fields[1], Integer.parseInt(fields[2])));
+            } else if(fields[0].equals(PROFESSOR)){
+                if(backend.userExists(fields[1]) && !backend.isStudent(fields[1])) {
+                    System.out.println(backend.getCourseUser(fields[1]));
+                } else{
+                    System.out.println("Error: The user entered either does not exist " +
+                            "in the database or is not a professor.");
+                }
+            } else if(fields[0].equals(STUDENT)){
+                if(backend.userExists(fields[1]) && backend.isStudent(fields[1])) {
+                    System.out.println(backend.getCourseUser(fields[1]));
+                } else{
+                    System.out.println("Error: The user entered either does not exist in the database" +
+                            "or is not a student.");
+                }
+            } else if(fields[0].equals(UNENROLL)){
+                if(backend.userExists(fields[1]) && backend.isStudent(fields[1])){
+                    System.out.println(backend.unenrollStudent(fields[1], Integer.parseInt(fields[2])));
+                } else{
+                    System.out.println("Error: The user entered is either does not exist " +
+                            "in the database or is not a student.");
+                }
+            } else {
                 System.out.println("Unrecognized command " + fields[0]);
             }
 
