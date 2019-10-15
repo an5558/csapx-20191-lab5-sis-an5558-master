@@ -144,7 +144,7 @@ public class Course implements Comparable<Course> {
     @Override
     public boolean equals(Object other) {
         if(other instanceof Course) {
-            if (this.compareTo((Course) other) == 0) {
+            if (this.compareTo((Course)other) == 0) {
                 return true;
             }
         }

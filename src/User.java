@@ -29,32 +29,46 @@ public class User implements Comparable<User> {
 
     @Override
     public boolean equals(Object other) {
+        if(other instanceof User){
+            if(this.getUsername().compareTo(((User)other).getUsername()) == 0){
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public int compareTo(User o) {
-        return 0;
+        if(this.getUsername().compareTo(o.getUsername()) < 0){
+            return -1;
+        } else if(this.getUsername().compareTo(o.getUsername()) == 0){
+            return 0;
+        } else{
+            return 1;
+        }
     }
 
     public Collection<Course> getCourses() {
-        return null;
+        return courses;
     }
 
     public String getUsername() {
-        return null;
+        return username;
     }
 
     public int hashCode() {
-        return -1;
+        return username.hashCode();
     }
 
     public boolean removeCourse(Course course) {
-        return false;
+        return courses.remove(course);
     }
 
     @Override
     public String toString() {
-        return null;
+        return "User{username=" + username +
+                ", type=" + type +
+                ", courses=" + courses +
+                "}";
     }
 }

@@ -115,7 +115,12 @@ public class SIS {
                 helpMessage();
             } else if (fields[0].equals(QUIT)) {
                 break;
-            } else {
+            } else if(fields[0].equals(COURSE)){
+                System.out.println(backend.getCourse(Integer.parseInt(fields[1])));
+            } else if(fields[0].equals(COURSES)){
+                System.out.println(backend.getAllCourses());
+            }
+            else {
                 System.out.println("Unrecognized command " + fields[0]);
             }
 
