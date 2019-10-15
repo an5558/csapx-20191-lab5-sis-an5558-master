@@ -3,16 +3,24 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 public class User implements Comparable<User> {
+    /** The type of user */
+    public enum UserType{
+        PROFESSOR,
+        STUDENT
+    }
+
     private TreeSet<Course> courses;
     private User.UserType type;
     private String username;
 
     public User(String username, User.UserType type, Comparator<Course> comp) {
-
+        this.username = username;
+        this.type = type;
+        courses = new TreeSet<Course>(comp);
     }
 
     public boolean addCourse(Course course) {
-        return false;
+        return !(courses.add(course));
     }
 
     @Override

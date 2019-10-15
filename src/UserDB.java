@@ -4,23 +4,26 @@ import java.util.HashMap;
 public class UserDB implements DB<String, User> {
     private HashMap<String, User> users;
 
-    public UserDB() {
-
-    }
+    public UserDB() { }
 
     public User addValue(User user) {
+        if(users.get(user) != null){
+            return users.put(user.getUsername(), user);
+        } else{
+            users.put(user.getUsername(), user);
+        }
         return null;
     }
 
     public Collection<User> getAllValues() {
-        return null;
+        return users.values();
     }
 
     public User getValue(String username) {
-        return null;
+        return users.get(username);
     }
 
     public boolean haskey(String username) {
-        return false;
+        return users.containsKey(username);
     }
 }
