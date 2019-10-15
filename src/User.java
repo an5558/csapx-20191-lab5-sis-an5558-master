@@ -19,6 +19,10 @@ public class User implements Comparable<User> {
         courses = new TreeSet<Course>(comp);
     }
 
+    public UserType getUserType(){
+        return type;
+    }
+
     public boolean addCourse(Course course) {
         return !(courses.add(course));
     }
