@@ -4,7 +4,9 @@ import java.util.HashMap;
 public class UserDB implements DB<String, User> {
     private HashMap<String, User> users;
 
-    public UserDB() { }
+    public UserDB() {
+        users = new HashMap<String, User>();
+    }
 
     public User addValue(User user) {
         if(users.get(user) != null){

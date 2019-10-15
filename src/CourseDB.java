@@ -4,7 +4,9 @@ import java.util.HashMap;
 public class CourseDB implements DB<Integer, Course> {
     private HashMap<Integer, Course> courses;
 
-    public CourseDB() { }
+    public CourseDB() {
+        courses = new HashMap<Integer, Course>();
+    }
 
     public Course addValue(Course course) {
         if(courses.get(course.getId()) != null){
