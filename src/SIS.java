@@ -31,7 +31,7 @@ import java.util.*;
  * <br>
  *
  * @author Sean Strout @ RITCS
- * @author YOUR NAME HERE
+ * @author Ayane Naito
  */
 public class SIS {
     /** the course command */
@@ -129,7 +129,10 @@ public class SIS {
                     System.out.println(c);
                 }
             } else if(fields[0].equals(ENROLL)){
-                backend.enrollStudent(fields[1], Integer.parseInt(fields[2]));
+                if(backend.userExists(fields[1]) && backend.isStudent(fields[1]) &&
+                        backend.courseExists(Integer.parseInt(fields[2]))) {
+                    backend.enrollStudent(fields[1], Integer.parseInt(fields[2]));
+                }
             } else if(fields[0].equals(PROFESSOR)){
                 if(backend.userExists(fields[1]) && !backend.isStudent(fields[1])) {
                     Collection<Course> courses = backend.getCourseUser(fields[1]);
@@ -151,7 +154,8 @@ public class SIS {
                             "or is not a student.");
                 }
             } else if(fields[0].equals(UNENROLL)){
-                if(backend.userExists(fields[1]) && backend.isStudent(fields[1])){
+                if(backend.userExists(fields[1]) && backend.isStudent(fields[1]) &&
+                        backend.courseExists(Integer.parseInt(fields[2]))){
                     System.out.println(backend.unenrollStudent(fields[1], Integer.parseInt(fields[2])));
                 } else{
                     System.out.println("Error: The user entered is either does not exist " +
