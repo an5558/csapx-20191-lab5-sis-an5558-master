@@ -4,7 +4,7 @@ import java.util.Comparator;
  * A class that overrides the natural order comparison of courses to order
  * them alphabetically by course name.
  *
- * @author YOUR NAME HERE
+ * @author Ayane Naito
  */
 public class CourseComparator implements Comparator<Course> {
     public CourseComparator() {

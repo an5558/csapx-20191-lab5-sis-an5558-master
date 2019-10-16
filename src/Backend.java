@@ -196,7 +196,7 @@ public class Backend {
         if(!user.getCourses().contains(course) && !course.getStudents().contains(user)){
             return false;
         } else{
-            user.getCourses().remove(course);
+            user.removeCourse(course);
             course.removeStudent(username);
         }
         return true;

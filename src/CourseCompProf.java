@@ -1,5 +1,12 @@
 import java.util.Comparator;
 
+/**
+ * A class that overrides the natural order comparison of courses for a professor
+ * to order them by ascending course level first and then alphabetically by course name.
+ *
+ * @author Ayane Naito
+ */
+
 public class CourseCompProf implements Comparator<Course> {
     public CourseCompProf() {
 
