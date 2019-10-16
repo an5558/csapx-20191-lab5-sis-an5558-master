@@ -112,7 +112,7 @@ public class SIS {
             }
             String fields[] = line.split("\\s+");
 
-            // TODO handle commands here
+            // Handles commands from user here, if multiple users or courses are printed, prints one per line.
             if (fields[0].equals(HELP)) {
                 helpMessage();
             } else if (fields[0].equals(QUIT)) {
@@ -132,14 +132,20 @@ public class SIS {
                 backend.enrollStudent(fields[1], Integer.parseInt(fields[2]));
             } else if(fields[0].equals(PROFESSOR)){
                 if(backend.userExists(fields[1]) && !backend.isStudent(fields[1])) {
-                    System.out.println(backend.getCourseUser(fields[1]));
+                    Collection<Course> courses = backend.getCourseUser(fields[1]);
+                    for(Course c : courses){
+                        System.out.println(c);
+                    }
                 } else{
                     System.out.println("Error: The user entered either does not exist " +
                             "in the database or is not a professor.");
                 }
             } else if(fields[0].equals(STUDENT)){
                 if(backend.userExists(fields[1]) && backend.isStudent(fields[1])) {
-                    System.out.println(backend.getCourseUser(fields[1]));
+                    Collection<Course> courses = backend.getCourseUser(fields[1]);
+                    for(Course c : courses){
+                        System.out.println(c);
+                    }
                 } else{
                     System.out.println("Error: The user entered either does not exist in the database" +
                             "or is not a student.");
