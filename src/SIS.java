@@ -124,9 +124,12 @@ public class SIS {
                     System.out.println("Error: The course entered does not exist in the database.");
                 }
             } else if(fields[0].equals(COURSES)){
-                System.out.println(backend.getAllCourses());
+                Collection<Course> courses = backend.getAllCourses();
+                for(Course c : courses){
+                    System.out.println(c);
+                }
             } else if(fields[0].equals(ENROLL)){
-                System.out.println(backend.enrollStudent(fields[1], Integer.parseInt(fields[2])));
+                backend.enrollStudent(fields[1], Integer.parseInt(fields[2]));
             } else if(fields[0].equals(PROFESSOR)){
                 if(backend.userExists(fields[1]) && !backend.isStudent(fields[1])) {
                     System.out.println(backend.getCourseUser(fields[1]));
@@ -152,7 +155,9 @@ public class SIS {
                 Collection<User> users = backend.getAllUsers();
                 List lstUsers = new ArrayList<User>(users);
                 Collections.sort(lstUsers);
-                System.out.println(lstUsers);
+                for(Object u : lstUsers){
+                    System.out.println(u);
+                }
             }
             else {
                 System.out.println("Unrecognized command " + fields[0]);

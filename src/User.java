@@ -1,6 +1,4 @@
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.TreeSet;
+import java.util.*;
 
 public class User implements Comparable<User> {
     /** The type of user */
@@ -66,9 +64,14 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
+        List<Course> courseList = new ArrayList<Course>(courses);
+        String[] courseNames = new String[courseList.size()];
+        for(int i = 0; i < courseList.size(); i++){
+            courseNames[i] = courseList.get(i).getName();
+        }
         return "User{username=" + username +
                 ", type=" + type +
-                ", courses=" + courses +
+                ", courses=" + Arrays.toString(courseNames) +
                 "}";
     }
 }
