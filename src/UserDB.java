@@ -1,5 +1,6 @@
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.TreeSet;
 
 public class UserDB implements DB<String, User> {
     private HashMap<String, User> users;

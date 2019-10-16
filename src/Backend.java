@@ -13,8 +13,8 @@ public class Backend {
     }
 
     private void addCourses(User user, String[] courseIds) {
-        for(String id : courseIds){
-            user.addCourse(courseDB.getValue(Integer.parseInt(id)));
+        for(int i = 0; i < courseIds.length; i++){
+            user.addCourse(courseDB.getValue(Integer.parseInt(courseIds[i])));
         }
     }
 
@@ -62,15 +62,20 @@ public class Backend {
 
     private void initializeUserDB(String professorFile, String studentFile) throws FileNotFoundException{
         userDB = new UserDB();
+        String[] courseIdsProf;
+        String[] courseIdsStudent;
         try(Scanner in = new Scanner(new File(professorFile))){
             while(in.hasNext()){
                 String[] fields = in.nextLine().split(",");
                 Professor professor = new Professor(fields[0]);
-                String[] courseIds = new String[fields.length];
+                courseIdsProf = new String[fields.length - 1];
                 for(int i = 1; i < fields.length; i++){
-                    courseIds[i] = fields[i];
+                    courseIdsProf[i-1] = fields[i];
                 }
-                addCourses(professor, courseIds);
+                addCourses(professor, courseIdsProf);
+                for(String id : courseIdsProf){
+                    courseDB.getValue(Integer.parseInt(id)).addProfessor(professor.getUsername());
+                }
                 userDB.addValue(professor);
             }
         }
@@ -78,11 +83,14 @@ public class Backend {
             while(in.hasNext()){
                 String[] fields = in.nextLine().split(",");
                 Student student = new Student(fields[0]);
-                String[] courseIds = new String[fields.length];
+                courseIdsStudent = new String[fields.length - 1];
                 for(int i = 1; i < fields.length; i++){
-                    courseIds[i] = fields[i];
+                    courseIdsStudent[i-1] = fields[i];
                 }
-                addCourses(student, courseIds);
+                addCourses(student, courseIdsStudent);
+                for(String id : courseIdsStudent){
+                    courseDB.getValue(Integer.parseInt(id)).addStudent(student.getUsername());
+                }
                 userDB.addValue(student);
             }
         }
@@ -99,7 +107,7 @@ public class Backend {
             return false;
         } else{
             user.getCourses().remove(course);
-            course.getStudents().remove(user);
+            course.removeStudent(username);
         }
         return true;
     }

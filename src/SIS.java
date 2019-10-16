@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.*;
 
 /**
  * The main program and "front end" for the Student Information System.  It
@@ -146,7 +148,13 @@ public class SIS {
                     System.out.println("Error: The user entered is either does not exist " +
                             "in the database or is not a student.");
                 }
-            } else {
+            } else if(fields[0].equals(USERS)){
+                Collection<User> users = backend.getAllUsers();
+                List lstUsers = new ArrayList<User>(users);
+                Collections.sort(lstUsers);
+                System.out.println(lstUsers);
+            }
+            else {
                 System.out.println("Unrecognized command " + fields[0]);
             }
 
